@@ -1,0 +1,28 @@
+{
+  "name": "clean-blog",
+  "version": "1.0.0",
+  "description": "odev clean-blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozcanyureklioglu/clean-blog.git"
+  },
+  "keywords": [
+    "odev",
+    "clean",
+    "blog"
+  ],
+  "author": "Özcan Yüreklioğlu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ozcanyureklioglu/clean-blog/issues"
+  },
+  "homepage": "https://github.com/ozcanyureklioglu/clean-blog#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
