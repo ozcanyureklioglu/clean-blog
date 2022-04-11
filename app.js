@@ -1,13 +1,38 @@
 const express = require('express');
+const path=require('path');
+const ejs=require('ejs');
+var app = express();
 
-const app = express();
-const port = 5000;
-const blog = { id: 1, title: 'Blog title', description: 'Blog description' };
 
+//TEMPLATE ENGİNE
+app.set("view engine","ejs");
+
+//MIDLEWARE
+app.use(express.static('public'));
+
+
+//ROUTES
 app.get('/', (req, res) => {
-  res.send(blog);
+  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  res.render('index');
+});
+app.get('/about', (req, res) => {
+  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  res.render('about');
+});
+app.get('/post', (req, res) => {
+  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  res.render('post');
+});
+app.get('/add', (req, res) => {
+  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  res.render('add_post');
 });
 
+
+
+const port = 3000;
+
 app.listen(port, () => {
-  console.log('Sunucu ', port, ' portundan çalıştı');
+  console.log(port, ' portunda sunucu çalıştı');
 });
