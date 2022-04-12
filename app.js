@@ -1,32 +1,49 @@
 const express = require('express');
+const mongoose=require('mongoose');
 const path=require('path');
 const ejs=require('ejs');
+const Post=require('./models/Posts');
+
+
 var app = express();
 
+//DATABASE CONNECTİON 
+mongoose.connect('mongodb://localhost/clean-blog-db', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 //TEMPLATE ENGİNE
 app.set("view engine","ejs");
 
 //MIDLEWARE
 app.use(express.static('public'));
-
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 //ROUTES
-app.get('/', (req, res) => {
-  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
-  res.render('index');
+app.get('/', async (req, res) => {
+  const posts=await Post.find({});
+  res.render('index',{
+    posts
+  });
 });
 app.get('/about', (req, res) => {
-  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  
   res.render('about');
 });
 app.get('/post', (req, res) => {
-  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+  
   res.render('post');
 });
-app.get('/add', (req, res) => {
-  //res.sendFile(path.resolve(__dirname, 'temp/index.html'));
+app.get('/add_post', (req, res) => {
+  
   res.render('add_post');
+});
+app.post('/add', async (req, res) => {
+  await Post.create(req.body);
+  console.log(req.body);
+  res.redirect('/');
 });
 
 
